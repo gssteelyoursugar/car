@@ -1,6 +1,6 @@
 <template>
     <div class="home-swiper">
-        <el-carousel :interval="4000" type="card" height="88px">
+        <el-carousel :interval="4000" type="card" height="76px">
             <el-carousel-item v-for="item in imgList" :key="item.id">
                 <img :src="item.url" class="swiper-img">
             </el-carousel-item>

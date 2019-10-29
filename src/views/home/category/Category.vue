@@ -70,13 +70,14 @@ background-size: cover;"
 
     .category-item {
         width: 45%;
-        margin-right 15px;
+        margin-right 3%;
         border: 1px solid #d1d1d1;
         border-radius 5px;
         margin-bottom: 14px;
         height: 0;
         padding-bottom: 15%;
         overflow: hidden;
+        margin-left: 2px;
     }
 
     .category-item:nth-child(2n) {

@@ -32,6 +32,19 @@ Vue.use(VueAwesomeSwiper);
 
 Vue.config.productionTip = false
 
+// 金额过滤器
+Vue.filter('money', (val) => {
+  if (typeof val === 'number') {
+    if (val % 1 === 0) {
+      return val + '.00'
+    } else {
+      return val
+    }
+  } else {
+    return val
+  }
+});
+
 new Vue({
   router,
   store,

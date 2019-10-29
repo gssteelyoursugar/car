@@ -2,7 +2,7 @@
     <div class="content-box">
         <div v-for="(list,index) of tabs" :key="index" v-if="index === curIndex">
             <template v-for="(item,idx) of list.list">
-                <div class="box-item">
+                <div class="box-item" @click="clickToDetail(item.id)">
                     <div class="price-date">
                         <div class="bill-price">
                             <span>{{item.price}}</span><span>RMB</span>
@@ -40,29 +40,22 @@
                     </div>
                     <div class="rate" v-if="item.status==='5'" @click="clickRate(idx)">评价</div>
                 </div>
-                <div class="rate-content" v-if="curRate===idx && showRate">
+                <!---->
+                <div class="rate-content" v-if="curRate===idx && showRate" v-for="rate of item.rate" :key="item.id">
                     <div class="star">
                         <el-rate
-                                v-model="rate"
+                                v-model="rate.rate_star"
                                 disabled
                                 show-score
                                 text-color="#FF5861">
                         </el-rate>
                     </div>
                     <div class="rate-text">
-                        <span>买了小四有一个月了，总体来说都比较满意，唯一的遗憾就是灯光不是很给力，毕竟刚提车也不久，还不舍得拆大灯，就一直忍着。直到前几天晚上回家，因为对向车道车,直到前几天晚上回家，因为对向车道车</span>
+                        <span>{{rate.content}}</span>
                     </div>
                     <div class="img-list">
-                        <div class="img-item">
-                            <img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=094e628b0824ab18e416e63505fbe69a/f9198618367adab411c59cee8ad4b31c8701e402.jpg"
-                                 alt="">
-                        </div>
-                        <div class="img-item">
-                            <img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=094e628b0824ab18e416e63505fbe69a/f9198618367adab411c59cee8ad4b31c8701e402.jpg"
-                                 alt="">
-                        </div>
-                        <div class="img-item">
-                            <img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=094e628b0824ab18e416e63505fbe69a/f9198618367adab411c59cee8ad4b31c8701e402.jpg"
+                        <div class="img-item" v-for="pic of rate.imgList">
+                            <img :src="pic"
                                  alt="">
                         </div>
                     </div>
@@ -74,7 +67,7 @@
 
 <script>
   export default {
-    name: "Card",
+    name: "InstallCard",
     data () {
       return {
         showRate: false,
@@ -88,6 +81,9 @@
         console.log(index);
         this.curRate = index
         this.showRate = !this.showRate
+      },
+      clickToDetail(id) {
+        this.$router.push('/order-detail/'+id)
       }
     },
     props: {
@@ -208,7 +204,6 @@
 
     .rate:hover {
         cursor: pointer;
-
     }
 
     .rate-content {

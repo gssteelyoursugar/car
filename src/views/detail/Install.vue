@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import Card from './component/Card'
+    import Card from './component/InstallCard'
   /**
    * status: 1待确认，2待安装，3待审核，4驳回，5已结算
    */
@@ -307,9 +307,9 @@
                     rate_star: 4.5,
                     content: '买了小四有一个月了，总体来说都比较满意，唯一的遗憾就是灯光不是很给力，毕竟刚提车也不久，还不舍得拆大灯，就一直忍着。直到前几天晚上回家，因为对向车道车',
                     imgList: [
-                      'https://kedand.oss-cn-beijing.aliyuncs.com/uploads/swiper-img.png',
-                      'https://kedand.oss-cn-beijing.aliyuncs.com/uploads/swiper-img.png',
-                      'https://kedand.oss-cn-beijing.aliyuncs.com/uploads/swiper-img.png'
+                      'https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=094e628b0824ab18e416e63505fbe69a/f9198618367adab411c59cee8ad4b31c8701e402.jpg',
+                      'https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=094e628b0824ab18e416e63505fbe69a/f9198618367adab411c59cee8ad4b31c8701e402.jpg',
+                      'https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D220/sign=094e628b0824ab18e416e63505fbe69a/f9198618367adab411c59cee8ad4b31c8701e402.jpg'
                     ],
                   }
                 ]
@@ -353,9 +353,6 @@
     methods: {
       changeBar(idx) {
         this.curIndex = idx
-      },
-      onChange() {
-
       },
     }
   }

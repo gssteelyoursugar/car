@@ -1,5 +1,10 @@
 export default [
   {
+    path: '/order-detail/:id',
+    name: 'Detail',
+    component: () => import('../components/Detail/Detail'),
+  },
+  {
     path: '/bill',
     name: 'Bill',
     component: () => import('../views/detail/Bill'),
@@ -31,12 +36,36 @@ export default [
       title: '核销'
     }
   },
+
+  {
+    path:'/slip-succ',
+    component: () => import('../views/detail/SlipSucc'),
+    meta: {
+      title: '核销成功'
+    }
+  },
   {
     path: '/upload',
     name: 'Upload',
     component: () => import('../views/detail/Upload'),
     meta: {
       title: '上传视频'
-    }
+    },
+  },
+  {
+    path: '/upload-video/:id',
+    name: 'UploadVideo',
+    component: () => import('../views/detail/UploadVideo'),
+    meta: {
+      title: '上传视频'
+    },
+  },
+  {
+    path: '/upload-succ',
+    name: 'UploadSucc',
+    component: () => import('../views/detail/UploadSucc'),
+    meta: {
+      title: '上传视频结果'
+    },
   }
 ]

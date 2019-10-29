@@ -1,12 +1,25 @@
 <template>
     <div class="home-container">
+        <div class="choose-shop" v-if="showShop">
+            <div class="choose-item">
+                <div class="item-title">请选择门店</div>
+                <div class="item-content">
+                    <div class="item" @click="toggleShop">幻影车灯音响 王龙飞</div>
+                    <div class="item" @click="toggleShop">钟祥启程车灯服务店</div>
+                    <div class="item" @click="toggleShop">亮途汽车灯光升级服务店</div>
+                </div>
+            </div>
+        </div>
         <div class="header-content">
             <div class="shop-info">
-                <div class="shop-avatar-name">
-                    <div class="shop-avatar">
-                        <img src="@/assets/image/0.jpg" alt="">
+                <div class="shop-avatar-name" @click="toggleShop">
+                    <!--<div class="shop-avatar">-->
+                    <!--<img src="@/assets/image/0.jpg" alt="">-->
+                    <!--</div>-->
+                    <div class="shop-name">阿帕旗舰店（广州）
+                        <van-icon name="arrow-down" class="arrow-icon"/>
+                        <p>旗下共有3家门店</p>
                     </div>
-                    <div class="shop-name">幸福车厂</div>
                 </div>
                 <div class="message">
                     <div class="msg-img" @click="goToMsg('/message')">
@@ -19,7 +32,7 @@
                 <p class="total-title">总金额</p>
                 <p class="total-price">
                     <span class="price-unit">¥</span>
-                    <span>90000.00</span>
+                    <span>{{ money | money}}</span>
                     <span class="price-unit">元</span>
                 </p>
             </div>
@@ -30,7 +43,7 @@
                 </div>
                 <div class="card-item">
 
-                    <p>可提现</p>
+                    <p class="special">可提现</p>
 
                     <p><span class="price-unit">¥</span>200.00</p>
                 </div>
@@ -46,18 +59,56 @@
 <script>
   export default {
     name: "UserInfo",
+    data() {
+      return {
+        money: 9000,
+        showShop: false
+      }
+    },
     methods: {
       goToMsg(data) {
         console.log(data);
-
+      },
+      toggleShop() {
+        this.showShop = !this.showShop
       }
     }
   }
 </script>
 
 <style lang="stylus" scoped>
+
+
     .home-container {
         background-color #f4f4f4;
+    }
+
+    .choose-shop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background #fff;
+        z-index: 9;
+    }
+
+    .choose-item .item-title {
+        text-align center;
+        font-size: 18px;
+        color: #000;
+        margin: 30px 0 50px;
+    }
+
+    .choose-item .item-content .item {
+        width: 80%;
+        margin: 20px auto;
+        text-align: center;
+        border: 1px solid #e5e5e5;
+        padding: 18px 0;
+        border-radius: 8px;
+        box-shadow: 0 0 4px 1px #e5e5e5;
+
     }
 
     .header-content {
@@ -79,12 +130,13 @@
     }
 
     .shop-avatar-name {
-        width: 90%;
+        width: 80%;
         display: flex;
     }
 
     .message {
-        width: 10%;
+        width: 20%;
+        text-align: center;
     }
 
     .shop-avatar-name .shop-avatar img {
@@ -99,6 +151,20 @@
         color: #fff;
         line-height 30px;
         margin-left: 13px;
+        position: relative;
+    }
+
+    .arrow-icon {
+        position: absolute;
+        top: 6px;
+        right: -10px;
+
+    }
+
+    .shop-name p {
+        margin: 0;
+        line-height 10px;
+        font-size: 12px;
     }
 
     .msg-img img {
@@ -163,6 +229,18 @@
         font-size: 12px;
         color: #666666;
         margin-left: 4px;
+    }
+
+    .card-item p.special {
+        width: 50%;
+        background: linear-gradient(to right, #F6C794, #F2AD6A);
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        text-align: center;
+        color: #fff;
+        margin-left: 0;
     }
 
     .card-item p:last-child {
