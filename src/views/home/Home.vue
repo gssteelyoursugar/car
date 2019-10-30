@@ -3,6 +3,7 @@
         <user-info/>
         <swiper :imgList="imgList"/>
         <category :cateList="cateList"/>
+        <my-footer/>
     </div>
 </template>
 
@@ -10,7 +11,7 @@
   import UserInfo from './userCard/UserInfo'
   import Swiper from './swiper/Swiper'
   import Category from './category/Category'
-
+import MyFooter from './../../components/Footer/Footer'
   export default {
     name: 'home',
     data() {
@@ -70,7 +71,8 @@
     components: {
       UserInfo,
       Swiper,
-      Category
+      Category,
+      MyFooter
     }
   }
 </script>
