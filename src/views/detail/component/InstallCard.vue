@@ -3,42 +3,44 @@
         <div v-for="(list,index) of tabs" :key="index" v-if="index === curIndex">
             <template v-for="(item,idx) of list.list">
                 <div class="box-item" @click="clickToDetail(item.id)">
-                    <div class="price-date">
-                        <div class="bill-price">
-                            <span>{{item.price}}</span><span>RMB</span>
+                    <template >
+                        <div class="price-date">
+                            <div class="bill-price">
+                                <span>{{item.price}}</span><span>RMB</span>
+                            </div>
+                            <div class="bill-date">
+                                {{item.order_date}}
+                            </div>
                         </div>
-                        <div class="bill-date">
-                            {{item.order_date}}
+                        <div class="bill-order-status">
+                            <div class="bill-order">{{item.order_num}}</div>
+                            <div class="bill-status">
+                                状态：<span v-if="!item.status">未知</span>
+                                <span v-if="item.status==='1'">待确认</span>
+                                <span v-if="item.status==='2'">待安装</span>
+                                <span v-if="item.status==='3'">待审核</span>
+                                <span v-if="item.status==='4'">驳回</span>
+                                <span v-if="item.status==='5'">已结算</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="bill-order-status">
-                        <div class="bill-order">{{item.order_num}}</div>
-                        <div class="bill-status">
-                            状态：<span v-if="!item.status">未知</span>
-                            <span v-if="item.status==='1'">待确认</span>
-                            <span v-if="item.status==='2'">待安装</span>
-                            <span v-if="item.status==='3'">待审核</span>
-                            <span v-if="item.status==='4'">驳回</span>
-                            <span v-if="item.status==='5'">已结算</span>
+                        <div class="bill-info">
+                            <div class="info-item"><span class="info-title">产品：</span><span class="info-content">{{item.name}}</span>
+                            </div>
+                            <div class="info-item"><span class="info-title">车型：</span><span class="info-content">{{item.type}}</span>
+                            </div>
+                            <div class="info-item"><span class="info-title">客服：</span><span class="info-content">{{item.servicer}}</span>
+                            </div>
+                            <div class="info-item"><span class="info-title">安装店：</span><span class="info-content">{{item.shop}} {{item.shop_assit}}</span>
+                            </div>
+                            <div class="info-item"><span class="info-title">说明：</span><span
+                                    class="info-content">客服留言</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="bill-info">
-                        <div class="info-item"><span class="info-title">产品：</span><span class="info-content">{{item.name}}</span>
+                        <div class="re-reason" v-if="item.status==='4'">
+                            <span class="type">*驳回原因：</span> <span>{{item.re_msg}}</span> <span class="type">{{item.re_type}}</span>
                         </div>
-                        <div class="info-item"><span class="info-title">车型：</span><span class="info-content">{{item.type}}</span>
-                        </div>
-                        <div class="info-item"><span class="info-title">客服：</span><span class="info-content">{{item.servicer}}</span>
-                        </div>
-                        <div class="info-item"><span class="info-title">安装店：</span><span class="info-content">{{item.shop}} {{item.shop_assit}}</span>
-                        </div>
-                        <div class="info-item"><span class="info-title">说明：</span><span
-                                class="info-content">客服留言</span>
-                        </div>
-                    </div>
-                    <div class="re-reason" v-if="item.status==='4'">
-                        <span class="type">*驳回原因：</span> <span>{{item.re_msg}}</span> <span class="type">{{item.re_type}}</span>
-                    </div>
-                    <div class="rate" v-if="item.status==='5'" @click="clickRate(idx)">评价</div>
+                    </template>
+                    <div class="rate" v-if="item.status==='5'" @click.stop="clickRate(idx)">评价</div>
                 </div>
                 <!---->
                 <div class="rate-content" v-if="curRate===idx && showRate" v-for="rate of item.rate" :key="item.id">
@@ -68,7 +70,7 @@
 <script>
   export default {
     name: "InstallCard",
-    data () {
+    data() {
       return {
         showRate: false,
         rate: 3.5,
@@ -83,7 +85,7 @@
         this.showRate = !this.showRate
       },
       clickToDetail(id) {
-        this.$router.push('/order-detail/'+id)
+        this.$router.push('/order-detail/' + id)
       }
     },
     props: {
@@ -200,6 +202,7 @@
         padding: 0 2px;
         border-radius: 2px;
         line-height: 8px;
+        padding: 4px;
     }
 
     .rate:hover {
@@ -244,6 +247,6 @@
 
     .img-list .img-item img {
         width: 43px;
-        height:43px;
+        height: 43px;
     }
 </style>

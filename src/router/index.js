@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 
 import home from './home'
 import detail from './detail'
+import Shop from './shop'
 
 Vue.use(VueRouter)
 
@@ -11,7 +12,8 @@ const routes = [
   //  首页
   ...home,
   //  category
-  ...detail
+  ...detail,
+  ...Shop
 ];
 
 const router = new VueRouter({

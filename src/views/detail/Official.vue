@@ -549,7 +549,7 @@
         top: 0;
         right: 0;
         bottom: 0;
-        background #000000 aa;
+        background #000000aa;
     }
 
     .code-wrap {
