@@ -3,51 +3,74 @@
         <template v-if="!showBusiness">
             <div class="shop-file">
                 <div class="file-title">
+                    <!--占位-->
                     <p></p>
                     <p>请选择进入门店号</p>
                     <router-link tag="p" to="/add-shop"><span>添加新门店</span></router-link>
                 </div>
             </div>
             <div class="shop-list">
-                <div class="list-item" @click="pickShop">
-                    <span>幻影车灯音响 王龙飞</span><span><van-icon name="arrow" class="right-arrow"/></span>
-                </div>
-                <div class="list-item" @click="pickShop">
-                    <span>钟祥启程车灯服务店</span><span><van-icon name="arrow" class="right-arrow"/></span>
-                </div>
-                <div class="list-item" @click="pickShop">
-                    <span>亮途汽车灯光升级服务店</span><span><van-icon name="arrow" class="right-arrow"/></span>
+                <div class="list-item" @click="pickShop(item.name)" v-for="item of shopList" :key="item.id">
+                    <span>{{item.name}}</span><span><van-icon name="arrow" class="right-arrow"/></span>
                 </div>
             </div>
         </template>
         <template v-else>
-            <business/>
+            <business :curShop="curShop" :shopList="shopList"/>
         </template>
+        <my-footer class="home-footer"/>
     </div>
 </template>
 
 <script>
-  import Business from './component/ShopBusiness'
+  import Business from './Business'
+  import MyFooter from '../../components/Footer/Footer'
 
   export default {
     name: "Shop",
     data() {
       return {
-        showBusiness: false
+        showBusiness: false,
+        curShop: '',
+        shopList: [
+          {
+            id: '1',
+            name: '幻影车灯音响'
+          },
+          {
+            id: '2',
+            name: '钟祥启程车灯服务店'
+          },
+          {
+            id: '3',
+            name: '亮途汽车灯光升级服务店'
+          }
+        ]
       }
     },
     methods: {
-      pickShop () {
+      pickShop(name) {
+        this.curShop = name
         this.showBusiness = !this.showBusiness
       }
     },
     components: {
-      Business
+      Business,
+      MyFooter
     }
   }
 </script>
 
 <style lang="stylus" scoped>
+    .shop-container {
+        position fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background #f4f4f4;
+    }
+
     .shop-file {
         overflow hidden;
         height 0;

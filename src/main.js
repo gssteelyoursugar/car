@@ -29,6 +29,7 @@ import 'swiper/dist/css/swiper.css'
 
 Vue.use(VueAwesomeSwiper);
 
+import BScroll from 'better-scroll'
 
 Vue.config.productionTip = false
 

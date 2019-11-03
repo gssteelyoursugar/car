@@ -3,7 +3,7 @@
     <div class="add-shop">
         <div class="user-info">
             <div class="user-avatar">
-                <img src="http://b-ssl.duitang.com/uploads/item/201707/19/20170719211350_4PnBt.jpeg" alt="">
+                <img src="https://kedand.oss-cn-beijing.aliyuncs.com/uploads/avatar.jpeg" alt="">
             </div>
             <div class="user-name">阿斯顿改</div>
         </div>
@@ -16,7 +16,7 @@
                         clearable
                         clickable
                 />
-                <van-cell class="special" clickable title="门店地址" value="广州市 广州市 白云区" @click="toggleAddr">
+                <van-cell class="special" clickable title="门店地址" :value="cityName" @click="toggleAddr">
                     <van-icon
                             slot="right-icon"
                             name="arrow-down"
@@ -90,7 +90,8 @@
           // { url: 'https://cloud-image', isImage: true }
         ],
         showAddr: false,
-        areaList
+        areaList,
+        cityName: '北京市-北京市-东城区'
       }
     },
     methods: {
@@ -103,7 +104,17 @@
       },
       pickAddr(e) {
         console.log(e);
+        let datas = e
+        let result = []
+
+        datas.map((item,index)=> {
+          console.log(item, index);
+          result.push(item.name)
+        })
+        this.cityName = result.join('-')
+        console.log(result);
         this.toggleAddr()
+
       }
     }
   }

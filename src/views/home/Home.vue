@@ -2,8 +2,8 @@
     <div class="home">
         <user-info/>
         <swiper :imgList="imgList"/>
-        <category :cateList="cateList"/>
-        <my-footer/>
+        <category :cateList="cateList" style="margin-bottom: 60px;"/>
+        <my-footer class="home-footer"/>
     </div>
 </template>
 
@@ -11,7 +11,8 @@
   import UserInfo from './userCard/UserInfo'
   import Swiper from './swiper/Swiper'
   import Category from './category/Category'
-import MyFooter from './../../components/Footer/Footer'
+  import MyFooter from './../../components/Footer/Footer'
+
   export default {
     name: 'home',
     data() {
@@ -79,6 +80,19 @@ import MyFooter from './../../components/Footer/Footer'
 
 <style scoped>
     .home {
+        background: #f4f4f4;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .home-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background: #f4f4f4;
     }
 </style>
